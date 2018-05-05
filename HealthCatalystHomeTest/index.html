@@ -1,0 +1,87 @@
+﻿
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <title>Health Catalyst Home Test</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="Scripts/angular.js"></script>
+    <script src="Scripts/search.js"></script>
+    <script src="Scripts/clear.js"></script>
+    <script src="Scripts/autogen.js"></script>
+</head>
+<body style="background: #ffffff;">    
+        <header><div align="center">Health Catalyst Home Test</div></header>
+        <div>
+            <div ng-controller="searchcontroller">
+                <div>
+                    <nav style="background:#C8CDD0">
+                        <table>
+                            <tr>
+                                <td rowspan="5" style="padding-left:10px; padding-right:10px;">
+                                    <img ng-src="data:image/JPEG;base64,{{selected.Image}}" onerror="this.src='ExamplePictures/Unknown-person.png'" width="128" height="128" style="vertical-align:middle">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding-left:10px; padding-right:10px;">
+                                    First Name: {{selected.FirstName}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding-left:10px; padding-right:10px;">
+                                    Last Name: {{selected.LastName}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding-left:10px; padding-right:10px;">
+                                    Age: {{selected.Age}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding-left:10px; padding-right:10px;">
+                                    Interests: {{selected.Interests}}
+                                </td>
+                            </tr>
+                        </table>
+                    </nav>
+                </div>
+                <br />
+                <div>
+                    <form name="searchform" ng-submit="search()">
+                        <input type="text" ng-model="name" required>
+                        <input type="submit" style="padding-right:10px" value=search ng-disabled="searchform.$invalid" />
+                        <p>{{searching}}</p>
+                    </form>
+                </div>
+                <br />
+                <table class="table">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th>Last Name</th>
+                        <th>First Name</th>
+                        <th>Age</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="client in clients"
+                        ng-style="{'background-color': $index == slelectedIndex ? 'lightgray' :''}"
+                        ng-click="setSelect(client, $index)">
+                        <td>{{client.FirstName}}</td>
+                        <td>{{client.LastName}}</td>
+                        <td>{{client.Age}}</td>
+                    </tr>
+                        <tr><th colspan="5">Click the row to see client info detail</th></tr>
+                    </tbody>
+                </table>
+            </div>
+    </div>
+    <br />
+    <p>
+        <button ng-controller="clearcontroller" ng-click="clear()">Clear</button>        
+    <button ng-controller="generateDBcontroller" ng-click="generateDB()">Generate</button>
+
+    </p>
+
+</body>
+
+</html>
