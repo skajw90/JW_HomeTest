@@ -92,6 +92,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AgeExample.txt" />
+    <Content Include="App_Data\HealthCatalystDB.mdf" />
+    <Content Include="App_Data\HealthCatalystDB_log.ldf">
+      <DependentUpon>HealthCatalystDB.mdf</DependentUpon>
+    </Content>
     <Content Include="ExamplePictures\image1.png" />
     <Content Include="ExamplePictures\image2.png" />
     <Content Include="ExamplePictures\image3.png" />
@@ -103,18 +107,19 @@
     <Content Include="index.html" />
     <Content Include="InterestsExamples.txt" />
     <Content Include="LastNameExamples.txt" />
-    <Content Include="Models\HealthCatalystDB.Context.tt">
+    <Content Include="Models\HomeTestDBEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>HealthCatalystDB.edmx</DependentUpon>
-      <LastGenOutput>HealthCatalystDB.Context.cs</LastGenOutput>
+      <DependentUpon>HomeTestDBEntities.edmx</DependentUpon>
+      <LastGenOutput>HomeTestDBEntities.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\HealthCatalystDB.tt">
+    <Content Include="Models\HomeTestDBEntities.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>HealthCatalystDB.edmx</DependentUpon>
-      <LastGenOutput>HealthCatalystDB.cs</LastGenOutput>
+      <DependentUpon>HomeTestDBEntities.edmx</DependentUpon>
+      <LastGenOutput>HomeTestDBEntities.cs</LastGenOutput>
     </Content>
     <Content Include="README.txt" />
     <Content Include="Scripts\add.js" />
+    <Content Include="Scripts\addservice.js" />
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
@@ -128,6 +133,7 @@
     <Content Include="Scripts\esm\popper-utils.min.js.map" />
     <Content Include="Scripts\esm\popper-utils.js.map" />
     <Content Include="Scripts\clear.js" />
+    <Content Include="Scripts\fileconvert.js" />
     <Content Include="Scripts\search.js" />
     <Content Include="Scripts\umd\popper-utils.js" />
     <Content Include="Scripts\umd\popper-utils.min.js" />
@@ -145,34 +151,33 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\HealthCatalystDB.Context.cs">
+    <Compile Include="Models\HomeTestDBEntities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>HealthCatalystDB.Context.tt</DependentUpon>
+      <DependentUpon>HomeTestDBEntities.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\HealthCatalystDB.cs">
+    <Compile Include="Models\HomeTestDBEntities.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>HealthCatalystDB.tt</DependentUpon>
+      <DependentUpon>HomeTestDBEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\HealthCatalystDB.Designer.cs">
+    <Compile Include="Models\HomeTestDBEntities.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>HealthCatalystDB.edmx</DependentUpon>
+      <DependentUpon>HomeTestDBEntities.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
-      <DependentUpon>HealthCatalystDB.tt</DependentUpon>
+      <DependentUpon>HomeTestDBEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\WebInputModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="Models\HealthCatalystDB.edmx">
+    <EntityDeploy Include="Models\HomeTestDBEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>HealthCatalystDB.Designer.cs</LastGenOutput>
+      <LastGenOutput>HomeTestDBEntities.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\HealthCatalystDB.edmx.diagram">
-      <DependentUpon>HealthCatalystDB.edmx</DependentUpon>
+    <Content Include="Models\HomeTestDBEntities.edmx.diagram">
+      <DependentUpon>HomeTestDBEntities.edmx</DependentUpon>
     </Content>
     <None Include="packages.config" />
     <Content Include="Scripts\angular.min.js.map" />
@@ -183,9 +188,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

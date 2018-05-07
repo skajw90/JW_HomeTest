@@ -1,36 +1,30 @@
-﻿app.directive('fileModel', ['$parse', function ($parse) {
-    return {
-        restrict: 'A',
-        link: function (scope, element, attrs) {
-            var model = $parse(attrs.fileModel);
-            var modelSetter = model.assign;
-            element.bind('change', function () {
-                scope.$apply(function () {
-                    modelSetter(scope, element[0].file[0]);
-                });
-            });
+﻿app.controller("addcontroller", function ($scope, $http) {
+    $scope.postClient = {};
+
+    $scope.uploadFile = function (input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {                
+
+                var canvas = document.createElement("canvas");
+                var imageElement = document.createElement("img");
+
+                imageElement.setAttribute('src', e.target.result);
+                canvas.width = imageElement.width;
+                canvas.height = imageElement.height;
+                var context = canvas.getContext("2d");
+                context.drawImage(imageElement, 0, 0);
+                var base64Image = canvas.toDataURL("image/jpeg");
+
+                $scope.postClient.Image = base64Image.replace(/data:image\/jpeg;base64,/g, '');
+            }
+
+            reader.readAsDataURL(input.files[0]);
         }
-    };
-}]);
-
-app.controller('addcontroller', function ($scope, $http) {
-    $scope.addFail = "";
-    // result
-    var onSucess = function (response) {
-        alert("Complete to add data!");
-        $scope.postClient = "";
-    };
-    var onFailure = function (reason) {
-        $scope.addFail = "Add data to database has failed";
     }
-    // search function
-    $scope.add = function () {
-        $scope.adding = "adding data....";
-        var fd = new FormData();
-        fd.append('file', $scope.myFile);
-        $scope.postClient.Image = fd;
-        var url = "http://localhost:54266//main/add/";
-        $http.post(url, $scope.postClient).then(onSucess)
-    };
-})
 
+    $scope.add = function () {
+        var url = "http://localhost:54266//main/add";
+        $http.post(url, $scope.postClient);
+    }
+});

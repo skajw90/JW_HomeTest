@@ -10,6 +10,8 @@
     <script src="Scripts/clear.js"></script>
     <script src="Scripts/autogen.js"></script>
     <script src="Scripts/add.js"></script>
+    <script src="Scripts/fileconvert.js"></script>
+    <script src="Scripts/addservice.js"></script>
 </head>
 <body style="background: #ffffff;">    
         <header><div align="center">Health Catalyst Home Test</div></header>
@@ -84,7 +86,7 @@
                     <td>Last Name:<input type="text" ng-model="postClient.LastName" /></td>
                     <td>Age: <input type="number" ng-model="postClient.Age" /></td>
                     <td>Interests: <input type="text" ng-model="postClient.Interests" /></td>
-                    <td>Image:<input type="file" file-model ="myFile"></td></tr>
+                    <td><input type="file" name="file" onchange="angular.element(this).scope().uploadFile(this)" id="photo-upload" /></td></tr>
             </table>
             <input type="submit" value="Add" />
         </form>           
@@ -92,9 +94,6 @@
     <p>
         <button ng-controller="clearcontroller" ng-click="clear()">Clear</button>        
     <button ng-controller="generateDBcontroller" ng-click="generateDB()">Generate</button>
-
     </p>
-
 </body>
-
 </html>
