@@ -1,5 +1,4 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html ng-app="myApp">
 <head>
     <title>Health Catalyst Home Test</title>
@@ -86,12 +85,14 @@
                     <td>Interests: <input type="text" ng-model="postClient.Interests" /></td>
                     <td><input type="file" name="file" onchange="angular.element(this).scope().uploadFile(this)" id="photo-upload" /></td></tr>
             </table>
-            <input type="submit" value="Add" />
+            <div>
+                <input type="submit" value="Add" /> {{adding}}
+            </div>
         </form>           
     <br />
     <p>
-        <button ng-controller="clearcontroller" ng-click="clear()">Clear</button>        
-    <button ng-controller="generateDBcontroller" ng-click="generateDB()">Generate</button>
+        <button ng-controller="clearcontroller" ng-click="clear()">Clear</button>      
+    <button ng-controller="generateDBcontroller" ng-click="generateDB()">Generate</button>     
     </p>
 </body>
 </html>

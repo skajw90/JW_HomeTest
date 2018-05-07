@@ -8,6 +8,9 @@ using HealthCatalystHomeTest.Models;
 
 namespace HealthCatalystHomeTest.Tests
 {
+    /// <summary>
+    /// Fake DB Context for testing
+    /// </summary>
     class TestHealthCatalystHomeTestContext : IHealthCatalystHomeTestContext
     {
         public TestHealthCatalystHomeTestContext()

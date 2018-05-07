@@ -13,7 +13,7 @@ namespace HealthCatalystHomeTest.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class HealthCatalystDBEntities : DbContext
+    public partial class HealthCatalystDBEntities : DbContext, IHealthCatalystHomeTestContext
     {
         public HealthCatalystDBEntities()
             : base("name=HealthCatalystDBEntities")

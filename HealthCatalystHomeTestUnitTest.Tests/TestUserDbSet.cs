@@ -11,7 +11,8 @@ namespace HealthCatalystHomeTest.Tests
     {
         public override User Find(params object[] keyValues)
         {
-            return this.SingleOrDefault(user => user.Id == (int)keyValues.Single());
+            return this.SingleOrDefault
+                (user => (user.FirstName == (string)keyValues.Single() || user.LastName == (string)keyValues.Single()));
         }
     }
 }

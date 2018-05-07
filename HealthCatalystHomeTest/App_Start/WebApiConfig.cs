@@ -1,4 +1,5 @@
-﻿using System;
+﻿// Jiwon Nam
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
@@ -19,7 +20,7 @@ namespace HealthCatalystHomeTest
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
-
+            // auto create json format
             config.Formatters.Remove(config.Formatters.XmlFormatter);
             config.Formatters.Add(config.Formatters.JsonFormatter);
         }

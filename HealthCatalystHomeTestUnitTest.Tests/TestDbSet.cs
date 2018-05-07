@@ -8,6 +8,10 @@ using System.Threading.Tasks;
 
 namespace HealthCatalystHomeTest.Tests
 {
+    /// <summary>
+    /// fake db set functions
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class TestDbSet<T> : DbSet<T>, IQueryable, IEnumerable<T> where T : class
     {
         ObservableCollection<T> _data;
@@ -31,27 +35,22 @@ namespace HealthCatalystHomeTest.Tests
             return item;
         }
 
-        public override T Attach(T item)
+        public override IEnumerable<T> RemoveRange(IEnumerable<T> items)
         {
-            _data.Add(item);
-            return item;
-        }
+            for(int i = items.Count() - 1; i >= 0; i--)
+            {
+                T item = items.ElementAt(i);
+                if (_data.Contains(item))
+                    Remove(item);
+            }
 
-        public override T Create()
-        {
-            return Activator.CreateInstance<T>();
-        }
-
-        public override TDerivedEntity Create<TDerivedEntity>()
-        {
-            return Activator.CreateInstance<TDerivedEntity>();
+            return items;
         }
 
         public override ObservableCollection<T> Local
         {
             get { return new ObservableCollection<T>(_data); }
         }
-
         Type IQueryable.ElementType
         {
             get { return _query.ElementType; }

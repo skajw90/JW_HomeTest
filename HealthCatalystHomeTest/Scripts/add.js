@@ -1,6 +1,15 @@
-﻿app.controller("addcontroller", function ($scope, $http) {
+﻿// add controller
+app.controller("addcontroller", function ($scope, $http) {
     $scope.postClient = {};
 
+    var onSucess = function (response) {
+        alert("Added!");
+        // initialize
+        $scope.adding = "";
+        $scope.postClient = {};
+    };
+
+    // change image format to byte array
     $scope.uploadFile = function (input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
@@ -22,9 +31,10 @@
             reader.readAsDataURL(input.files[0]);
         }
     }
-
+    // post data to server
     $scope.add = function () {
+        $scope.adding = "adding...";
         var url = "http://localhost:54266//main/add";
-        $http.post(url, $scope.postClient);
+        $http.post(url, $scope.postClient).then(onSucess)
     }
 });
