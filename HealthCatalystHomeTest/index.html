@@ -9,6 +9,7 @@
     <script src="Scripts/search.js"></script>
     <script src="Scripts/clear.js"></script>
     <script src="Scripts/autogen.js"></script>
+    <script src="Scripts/add.js"></script>
 </head>
 <body style="background: #ffffff;">    
         <header><div align="center">Health Catalyst Home Test</div></header>
@@ -75,6 +76,18 @@
                 </table>
             </div>
     </div>
+        <form ng-controller="addcontroller" ng-submit="add()">
+            <p>Create User</p>
+            <table class="table">
+                <tr>
+                    <td>First Name:<input type="text" ng-model="postClient.FirstName" /></td>
+                    <td>Last Name:<input type="text" ng-model="postClient.LastName" /></td>
+                    <td>Age: <input type="number" ng-model="postClient.Age" /></td>
+                    <td>Interests: <input type="text" ng-model="postClient.Interests" /></td>
+                    <td>Image:<input type="file" file-model ="myFile"></td></tr>
+            </table>
+            <input type="submit" value="Add" />
+        </form>           
     <br />
     <p>
         <button ng-controller="clearcontroller" ng-click="clear()">Clear</button>        

@@ -114,6 +114,7 @@
       <LastGenOutput>HealthCatalystDB.cs</LastGenOutput>
     </Content>
     <Content Include="README.txt" />
+    <Content Include="Scripts\add.js" />
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
@@ -162,6 +163,7 @@
     <Compile Include="Models\User.cs">
       <DependentUpon>HealthCatalystDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\WebInputModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

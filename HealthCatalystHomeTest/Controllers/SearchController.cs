@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 
@@ -27,7 +29,44 @@ namespace HealthCatalystHomeTest.Controllers
                 return db.Users.Where(x => x.LastName == name || x.FirstName == name).ToList();         
             }
         }
-                
+        
+        [HttpPost]
+        [Route("add")]
+        public IHttpActionResult Add([FromBody]WebInputModel input)
+        {
+            // set user and file to byte
+            User user = new User();
+            HttpPostedFile temp = input.Image;
+            byte[] imageByte;
+            
+            if (input.LastName.Length == 0 || input.FirstName.Length == 0 || input.Interests.Length == 0)
+                return BadRequest();
+
+            if (temp != null)
+            {
+                imageByte = FileToByteConverter(temp);
+            }
+
+            using (HomeTestDBEntities db = new HomeTestDBEntities())
+            {
+                db.Users.Add(user);
+                db.SaveChanges();
+            }
+
+            return Ok();
+        }
+
+        private byte[] FileToByteConverter(HttpPostedFile image)
+        {
+            byte[] result = new byte[image.ContentLength];
+
+            using (Stream stream = image.InputStream)
+            {
+                stream.Read(result, 0, image.ContentLength);
+
+                return result;
+            }           
+        }
 
         /// <summary>
         /// clear all data in DB
