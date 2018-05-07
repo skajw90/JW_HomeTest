@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 
@@ -29,6 +30,10 @@ namespace HealthCatalystHomeTest.Controllers
             }
         }
         
+        /// <summary>
+        /// add data to database
+        /// </summary>
+        /// <param name="user"></param>
         [HttpPost]
         [Route("add")]
         public void Add([FromBody]User user)
@@ -40,19 +45,7 @@ namespace HealthCatalystHomeTest.Controllers
             }
             
         }
-
-        private byte[] FileToByteConverter(HttpPostedFile image)
-        {
-            byte[] result = new byte[image.ContentLength];
-
-            using (Stream stream = image.InputStream)
-            {
-                stream.Read(result, 0, image.ContentLength);
-
-                return result;
-            }           
-        }
-
+    
         /// <summary>
         /// clear all data in DB
         /// </summary>
@@ -66,6 +59,9 @@ namespace HealthCatalystHomeTest.Controllers
                 var all = from c in db.Users select c;                
                 db.Users.RemoveRange(all);
                 db.SaveChanges();
+
+                if (db.Users.Count() != 0)
+                    throw new Exception("clear method not working");
             }
         }
 
@@ -82,7 +78,7 @@ namespace HealthCatalystHomeTest.Controllers
                 {
                     db.Users.Add(user);                 
                 }
-               db.SaveChanges();
+               db.SaveChanges();               
             }
         }
 
@@ -199,5 +195,6 @@ namespace HealthCatalystHomeTest.Controllers
 
             return users;
         }
+
     }
 }

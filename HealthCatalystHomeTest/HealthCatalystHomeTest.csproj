@@ -119,7 +119,6 @@
     </Content>
     <Content Include="README.txt" />
     <Content Include="Scripts\add.js" />
-    <Content Include="Scripts\addservice.js" />
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
