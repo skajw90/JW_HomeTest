@@ -1,5 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Web.Http.Results;
+using System.Net;
 using HealthCatalystHomeTest.Controllers;
 using HealthCatalystHomeTest.Models;
 using System.Collections.Generic;
@@ -14,10 +16,15 @@ namespace HealthCatalystHomeTest.Tests
         [TestMethod]
         public void ClearTest1()
         {
-            var testUsers = GetTestClients();
-            var controller = new SearchController();
+            var controller = new SearchControllerTester(new TestHealthCatalystHomeTestContext());
 
-            controller.Clear();
+            var testUsers = GetTestClients();
+
+            var result = controller.Add(testUsers[0]);
+
+            Assert.IsNotNull(result);
+
+            Assert.AreEqual(testUsers[0], controller.Search("First"));
 
         }
 

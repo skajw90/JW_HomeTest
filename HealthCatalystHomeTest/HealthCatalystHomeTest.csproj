@@ -147,9 +147,11 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Controllers\SearchControllerTester.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\HealthCatalystHomeTestContext.cs" />
     <Compile Include="Models\HomeTestDBEntities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -165,6 +167,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>HomeTestDBEntities.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\IHealthCatalystHomeTestContext.cs" />
     <Compile Include="Models\User.cs">
       <DependentUpon>HomeTestDBEntities.tt</DependentUpon>
     </Compile>
