@@ -1,12 +1,14 @@
 ﻿// add controller
 app.controller("addcontroller", function ($scope, $http) {
     $scope.postClient = {};
+    $scope.adding = "";
 
     var onSucess = function (response) {
         alert("Added!");
         // initialize
         $scope.adding = "";
         $scope.postClient = {};
+        $scope.postClient.Image = null;
     };
 
     // change image format to byte array

@@ -1,9 +1,9 @@
 ﻿// auto generate seed controller
 app.controller("generateDBcontroller", function ($scope, $http) {
-    
+    $scope.generating = "Auto Generate";
     var onSucess = function (response) {
         alert("Generated");
-        $scope.generating = "";
+        $scope.generating = "Auto Generate";
     };
 
     $scope.generateDB = function () {

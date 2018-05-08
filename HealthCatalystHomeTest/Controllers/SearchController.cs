@@ -38,10 +38,7 @@ namespace HealthCatalystHomeTest.Controllers
         [Route("search/{name}")]
         public IHttpActionResult Search(string name)
         {     
-            List<User> result = db.Users.Where(x => x.LastName == name || x.FirstName == name).ToList();
-
-            if (result.Count == 0)
-                return NotFound();
+            List<User> result = db.Users.Where(x => x.LastName == name || x.FirstName == name).ToList();        
 
             return Ok(result);
         }

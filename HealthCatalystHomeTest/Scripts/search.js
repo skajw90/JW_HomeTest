@@ -1,17 +1,31 @@
 ﻿var app = angular.module('myApp', []);
 // search controller
 app.controller("searchcontroller", function ($scope, $http) {
+    // initialize all variables
+    $scope.clearing = "";
+    $scope.searching = "";
     $scope.searchFail = "";
+    $scope.selected = {};
+    $scope.selected.Image = null;
+    $scope.clients = {};
     // result
     var onSucess = function (response) {
         $scope.clients = response.data;
+        if ($scope.clients.length == 0)
+            $scope.searchFail = "There is no matching data";
+        else
+            $scope.searchFail = "";
         // initialize
         $scope.name = "";
-        $scope.searching = "";
-        $scope.searchFail = "";
+        $scope.searching = "";      
     };
-    var onFailure = function (reason) {
-        $scope.searchFail = "There is no matching data";
+    var clearSucess = function (response) {
+        alert("Cleared!");
+        $scope.clients = {};
+        $scope.selected = {};
+        $scope.selected.Image = null;
+        $scope.name = "";
+        $scope.clearing = "";
     }
     // search function
     $scope.search = function () {
@@ -20,7 +34,14 @@ app.controller("searchcontroller", function ($scope, $http) {
         $http.get(url).then(onSucess)
     };
 
-    $scope.setSelect = function (client) {
+    $scope.clear = function () {
+        $scope.clearing = "Clearing...";
+        var url = "http://localhost:54266//main/clear";
+        $http.delete(url).then(clearSucess)
+    }
+
+    $scope.setSelect = function (client, index) {
+        $scope.selectedIndex = index;
         $scope.selected = client;
 
     }

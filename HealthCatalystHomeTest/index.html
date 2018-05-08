@@ -6,44 +6,46 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="Scripts/angular.js"></script>
     <script src="Scripts/search.js"></script>
-    <script src="Scripts/clear.js"></script>
     <script src="Scripts/autogen.js"></script>
-    <script src="Scripts/add.js"></script>
+    <script src="Scripts/add.js"></script>    
 </head>
-<body style="background: #ffffff;">    
-        <header><div align="center">Health Catalyst Home Test</div></header>
+<body style="background: #dee0e2;" ng-controller="searchcontroller">    
+        <header><div align="center"><font size="15"><b>Health Catalyst Home Test</b></font></div></header>
+    <br />    
         <div>
-            <div ng-controller="searchcontroller">
+            <div>
                 <div>
-                    <nav style="background:#C8CDD0">
-                        <table>
-                            <tr>
-                                <td rowspan="5" style="padding-left:10px; padding-right:10px;">
-                                    <img ng-src="data:image/JPEG;base64,{{selected.Image}}" onerror="this.src='ExamplePictures/Unknown-person.png'" width="128" height="128" style="vertical-align:middle">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="padding-left:10px; padding-right:10px;">
-                                    First Name: {{selected.FirstName}}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="padding-left:10px; padding-right:10px;">
-                                    Last Name: {{selected.LastName}}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="padding-left:10px; padding-right:10px;">
-                                    Age: {{selected.Age}}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="padding-left:10px; padding-right:10px;">
-                                    Interests: {{selected.Interests}}
-                                </td>
-                            </tr>
-                        </table>
-                    </nav>
+                    <font size="3">
+                        <nav style="background:#C8CDD0">
+                            <table>
+                                <tr>
+                                    <td rowspan="5" style="padding-left:10px; padding-right:10px; padding-top:20px; padding-bottom:20px">
+                                        <img ng-src="data:image/JPEG;base64,{{selected.Image}}" onerror="this.src='ExamplePictures/Unknown-person.png'" width="128" height="128" style="vertical-align:middle">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-left:20px; padding-right:20px;">
+                                        First Name: {{selected.FirstName}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-left:20px; padding-right:20px;">
+                                        Last Name: {{selected.LastName}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-left:20px; padding-right:20px;">
+                                        Age: {{selected.Age}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-left:20px; padding-right:20px;">
+                                        Interests: {{selected.Interests}}
+                                    </td>
+                                </tr>
+                            </table>
+                        </nav>
+                    </font>
                 </div>
                 <br />
                 <div>
@@ -51,21 +53,22 @@
                         <input type="text" ng-model="name" required>
                         <input type="submit" style="padding-right:10px" value=search ng-disabled="searchform.$invalid" />
                         <p>{{searching}}</p>
+                        <p>{{searchFail}}</p>
                     </form>
                 </div>
                 <br />
-                <table class="table">
-                    <thead class="thead-dark">
+                <table class="table table-borded">
+                    <thead class="thead-dark" style="background-color:#727e91">
                     <tr>
                         <th>Last Name</th>
                         <th>First Name</th>
                         <th>Age</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody>                  
                     <tr ng-repeat="client in clients"
-                        ng-style="{'background-color': $index == slelectedIndex ? 'lightgray' :''}"
-                        ng-click="setSelect(client, $index)">
+                        ng-style="{'background-color': $index == selectedIndex ? '#71a1ed' :'#a8bde0'}"
+                        ng-click="setSelect(client, $index)">                  
                         <td>{{client.FirstName}}</td>
                         <td>{{client.LastName}}</td>
                         <td>{{client.Age}}</td>
@@ -76,23 +79,27 @@
             </div>
     </div>
         <form ng-controller="addcontroller" ng-submit="add()">
-            <p>Create User</p>
+            <p><font size="5"><b>Create User</b></font></p>
             <table class="table">
                 <tr>
                     <td>First Name:<input type="text" ng-model="postClient.FirstName" /></td>
                     <td>Last Name:<input type="text" ng-model="postClient.LastName" /></td>
                     <td>Age: <input type="number" ng-model="postClient.Age" /></td>
                     <td>Interests: <input type="text" ng-model="postClient.Interests" /></td>
-                    <td><input type="file" name="file" onchange="angular.element(this).scope().uploadFile(this)" id="photo-upload" /></td></tr>
+                    <td>File:<input type="file" name="file" onchange="angular.element(this).scope().uploadFile(this)" id="photo-upload" /></td>
+                </tr>
+                <tr>
+                    <td colspan="5"><input type="submit" value="Add Client" /></td>              
+                </tr>
             </table>
-            <div>
-                <input type="submit" value="Add" /> {{adding}}
-            </div>
+            <p align="center">{{adding}}</p>
         </form>           
     <br />
-    <p>
-        <button ng-controller="clearcontroller" ng-click="clear()">Clear</button>      
-    <button ng-controller="generateDBcontroller" ng-click="generateDB()">Generate</button>     
+    <br />
+    <p align="center">
+        <button ng-click="clear()">Clear</button>      
+        <button ng-controller="generateDBcontroller" ng-click="generateDB()">{{generating}}</button>     
     </p>
+    <p>{{clearing}} </p>
 </body>
 </html>
